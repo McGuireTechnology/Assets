@@ -9,7 +9,7 @@ export default defineConfig({
       { text: 'Frontend', link: '/frontend' },
       { text: 'Backend', link: '/backend' },
       { text: 'API', link: '/api' },
-      { text: 'Stories', link: '/stories/house_of_systems/' },
+      { text: 'Stories', link: '/stories/' },
       { text: 'Changelog', link: '/changelog/' },
     ],
     sidebar: [
@@ -20,7 +20,7 @@ export default defineConfig({
           { text: 'Frontend', link: '/frontend' },
           { text: 'Backend', link: '/backend' },
           { text: 'API', link: '/api' },
-          { text: 'Stories', link: '/stories/house_of_systems/' },
+          { text: 'Stories', link: '/stories/' },
         ],
       },
       {
