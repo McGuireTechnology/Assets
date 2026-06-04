@@ -8,15 +8,14 @@ WORKDIR /app
 
 RUN addgroup --system assets && adduser --system --ingroup assets assets
 
-COPY backend/requirements.txt backend/requirements.txt
+COPY requirements.txt requirements.txt
 RUN python -m pip install --upgrade pip \
-    && python -m pip install --no-cache-dir -r backend/requirements.txt
+    && python -m pip install --no-cache-dir -r requirements.txt
 
-COPY backend backend
-COPY VERSION VERSION
+COPY app app
 RUN mkdir -p .data && chown -R assets:assets /app
 
 USER assets
 EXPOSE 8080
 
-CMD ["sh", "-c", "python -m uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port ${PORT:-8080}"]
+CMD ["sh", "-c", "python -m uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}"]

@@ -49,12 +49,12 @@ The backend lives in `backend/` and is planned for DigitalOcean.
 Expected production command shape:
 
 ```sh
-python -m uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port "$PORT"
+python -m uvicorn app.main:app --host 0.0.0.0 --port "$PORT"
 ```
 
 Production configuration should come from environment variables rather than checked-in files.
 
-The DigitalOcean App Platform spec in `.do/app.yaml` defines the `api` service, uses `backend/Dockerfile`, and checks `/health`.
+The DigitalOcean App Platform spec in `.do/app.yaml` defines the `api` service, uses `backend/` as the source directory, builds `backend/Dockerfile`, and checks `/health`.
 
 Deploy or update through `doctl` after creating/configuring the app:
 
