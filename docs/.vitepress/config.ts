@@ -9,6 +9,7 @@ export default defineConfig({
       { text: 'Frontend', link: '/frontend' },
       { text: 'Backend', link: '/backend' },
       { text: 'API', link: '/api' },
+      { text: 'Deployment', link: '/deployment' },
       { text: 'Stories', link: '/stories/' },
       { text: 'Changelog', link: '/changelog/' },
     ],
@@ -20,6 +21,7 @@ export default defineConfig({
           { text: 'Frontend', link: '/frontend' },
           { text: 'Backend', link: '/backend' },
           { text: 'API', link: '/api' },
+          { text: 'Deployment', link: '/deployment' },
           { text: 'Stories', link: '/stories/' },
         ],
       },
@@ -33,6 +35,7 @@ export default defineConfig({
         text: 'Releases',
         items: [
           { text: 'Changelog', link: '/changelog/' },
+          { text: '26.6.4', link: '/changelog/26.6.4' },
           { text: '26.6.3', link: '/changelog/26.6.3' },
           { text: '26.6.2', link: '/changelog/26.6.2' },
           { text: '26.6.1', link: '/changelog/26.6.1' },

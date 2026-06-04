@@ -6,7 +6,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.exc import SQLAlchemyError
 from sqlmodel import SQLModel, Session, select
 
-from app.config import DATABASE_KIND, DATABASE_URL, SKIP_DB_INIT
+from app.config import (
+    CORS_ALLOWED_ORIGINS,
+    CORS_ALLOW_ORIGIN_REGEX,
+    APP_VERSION,
+    DATABASE_KIND,
+    DATABASE_URL,
+    SKIP_DB_INIT,
+)
 from app.database import get_session, init_db
 from app.models import (
     AutonomousSystem,
@@ -36,18 +43,15 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Assets API",
-    version="26.6.0",
+    version=APP_VERSION,
     description="Backend API for the McGuire Technology, LLC - Assets application.",
     lifespan=lifespan,
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
-    allow_origin_regex=r"^http://(localhost|127\.0\.0\.1):\d+$",
+    allow_origins=CORS_ALLOWED_ORIGINS,
+    allow_origin_regex=CORS_ALLOW_ORIGIN_REGEX,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
