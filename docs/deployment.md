@@ -44,7 +44,6 @@ The backend lives in `backend/` and is planned for DigitalOcean.
 - Application server: Uvicorn
 - ASGI app: `app.main:app`
 - Container: `backend/Dockerfile`
-- App spec: `.do/app.yaml`
 
 Expected production command shape:
 
@@ -54,19 +53,18 @@ python -m uvicorn app.main:app --host 0.0.0.0 --port "$PORT"
 
 Production configuration should come from environment variables rather than checked-in files.
 
-The DigitalOcean App Platform spec in `.do/app.yaml` defines the `api` service, uses `backend/` as the source directory, builds `backend/Dockerfile`, and checks `/health`.
+Configure the DigitalOcean App Platform service in the dashboard rather than with a checked-in app spec.
 
-Deploy or update through `doctl` after creating/configuring the app:
+Recommended backend settings:
 
-```sh
-doctl apps create --spec .do/app.yaml
-```
+| Setting | Value |
+| --- | --- |
+| Source directory | `backend` |
+| Dockerfile path | `Dockerfile` |
+| HTTP port | `8080` |
+| Health check path | `/health` |
 
-```sh
-doctl apps update <app-id> --spec .do/app.yaml
-```
-
-Before deploying, set `ASSETS_CORS_ORIGINS` in `.do/app.yaml` to the Cloudflare Pages production origin.
+Set `ASSETS_CORS_ORIGINS` to the Cloudflare Pages production origin.
 
 ## Database
 
@@ -80,7 +78,7 @@ DATABASE_URL=postgresql://...
 
 SQLite remains useful for local development, but production migrations, backups, and connection limits should be designed around PostgreSQL.
 
-The starter `.do/app.yaml` provisions a DigitalOcean PostgreSQL dev database with `production: false`. For production, use a managed database cluster and update the database block with `production: true` and the target `cluster_name`.
+For production, use a managed DigitalOcean PostgreSQL cluster and provide its private connection string to the backend as `DATABASE_URL`.
 
 ## Open Decisions
 
