@@ -4,6 +4,7 @@ from fastapi.testclient import TestClient
 
 os.environ["ASSETS_SKIP_DB_INIT"] = "1"
 
+from app.config import normalize_database_url, parse_csv_env  # noqa: E402
 from app.database import get_session  # noqa: E402
 from app.main import app  # noqa: E402
 from app.models import (  # noqa: E402
@@ -60,6 +61,28 @@ def test_health_check() -> None:
         "service": "assets-api",
         "database": "sqlite",
     }
+
+
+def test_normalize_database_url_uses_psycopg_driver() -> None:
+    assert normalize_database_url("postgres://user:pass@example.com/assets") == (
+        "postgresql+psycopg://user:pass@example.com/assets"
+    )
+    assert normalize_database_url("postgresql://user:pass@example.com/assets") == (
+        "postgresql+psycopg://user:pass@example.com/assets"
+    )
+    assert normalize_database_url("sqlite:///local.db") == "sqlite:///local.db"
+
+
+def test_parse_csv_env_filters_empty_values() -> None:
+    os.environ["ASSETS_TEST_CORS_ORIGINS"] = "https://one.example, ,https://two.example"
+
+    try:
+        assert parse_csv_env("ASSETS_TEST_CORS_ORIGINS", []) == [
+            "https://one.example",
+            "https://two.example",
+        ]
+    finally:
+        os.environ.pop("ASSETS_TEST_CORS_ORIGINS")
 
 
 def test_list_configuration_items() -> None:

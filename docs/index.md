@@ -12,8 +12,17 @@ Use this site to document data models, API contracts, operational runbooks, and 
 | FastAPI backend | `backend/` | `http://localhost:8000` |
 | VitePress docs | `docs/` | `http://localhost:5174` |
 
+## Hosting Plan
+
+| Surface | Platform |
+| --- | --- |
+| Documentation | GitHub Pages |
+| Frontend | Cloudflare Pages |
+| Backend API | DigitalOcean |
+| Database | DigitalOcean PostgreSQL |
+
 ## Next Steps
 
 1. Replace the sample configuration item data with a database-backed model.
 2. Add authentication and role-specific views.
-3. Document API schemas and operational ownership in this docs site.
+3. Prepare production deployment workflows for Cloudflare Pages and DigitalOcean.

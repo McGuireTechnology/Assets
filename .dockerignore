@@ -1,0 +1,14 @@
+.cache/
+.data/
+.git/
+.github/
+.pytest_cache/
+.ruff_cache/
+.vscode/
+**/__pycache__/
+**/*.py[cod]
+docs/.vitepress/.temp/
+docs/.vitepress/dist/
+docs/node_modules/
+frontend/dist/
+frontend/node_modules/

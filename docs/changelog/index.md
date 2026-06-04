@@ -4,6 +4,7 @@ All notable changes to the Assets project are documented here. Releases follow [
 
 ## Releases
 
+- [26.6.4](./26.6.4.md) - DigitalOcean backend deployment prep
 - [26.6.3](./26.6.3.md) - Tooling and GitHub automation
 - [26.6.2](./26.6.2.md) - Story image and version bump
 - [26.6.1](./26.6.1.md) - Changelog update

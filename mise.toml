@@ -46,6 +46,10 @@ run = ".cache/python/venv/bin/python -m pytest"
 description = "Run backend lint checks"
 run = ".cache/python/venv/bin/python -m ruff check backend"
 
+[tasks."backend:docker-build"]
+description = "Build the backend Docker image"
+run = "docker build -f backend/Dockerfile -t assets-api:local ."
+
 [tasks.build]
 description = "Build frontend and docs"
 run = [
