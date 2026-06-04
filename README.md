@@ -78,6 +78,32 @@ mise run docs:dev
 
 VitePress will serve docs at `http://localhost:5174`.
 
+## Local Docker Stack
+
+Run the full local stack with Docker Compose:
+
+```sh
+mise run docker:up
+```
+
+Services are available at:
+
+| Service | URL |
+| --- | --- |
+| Frontend | `http://localhost:15173` |
+| Backend API | `http://localhost:18000` |
+| API docs | `http://localhost:18000/docs` |
+| Documentation | `http://localhost:15174` |
+| PostgreSQL | `localhost:5433` |
+
+Stop the stack with:
+
+```sh
+mise run docker:down
+```
+
+PostgreSQL data is stored in the `postgres-data` Docker volume. Remove it with `docker compose down --volumes` when you want a fresh local database.
+
 ## GitHub Pages
 
 The docs site is deployed automatically to GitHub Pages from `main` via `.github/workflows/docs-pages.yml`.

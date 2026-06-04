@@ -2,7 +2,9 @@ import os
 from pathlib import Path
 
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+BACKEND_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = PROJECT_ROOT if (PROJECT_ROOT / "VERSION").exists() else BACKEND_ROOT
 DEFAULT_SQLITE_PATH = REPO_ROOT / ".data" / "assets.sqlite3"
 DEFAULT_DATABASE_URL = f"sqlite:///{DEFAULT_SQLITE_PATH.as_posix()}"
 DEFAULT_CORS_ORIGINS = [
@@ -10,7 +12,16 @@ DEFAULT_CORS_ORIGINS = [
     "http://127.0.0.1:5173",
 ]
 DEFAULT_CORS_ORIGIN_REGEX = r"^http://(localhost|127\.0\.0\.1):\d+$"
-DEFAULT_APP_VERSION = (REPO_ROOT / "VERSION").read_text(encoding="utf-8").strip()
+
+
+def read_app_version() -> str:
+    version_file = REPO_ROOT / "VERSION"
+    if version_file.exists():
+        return version_file.read_text(encoding="utf-8").strip()
+    return "0.0.0"
+
+
+DEFAULT_APP_VERSION = read_app_version()
 
 
 def normalize_database_url(database_url: str) -> str:
