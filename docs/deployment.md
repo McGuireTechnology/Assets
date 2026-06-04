@@ -19,10 +19,10 @@ mise run docker:up
 
 | Service | URL |
 | --- | --- |
-| Frontend | `http://localhost:5173` |
-| Backend API | `http://localhost:8000` |
-| API docs | `http://localhost:8000/docs` |
-| Documentation | `http://localhost:5174` |
+| Frontend | `http://localhost:15173` |
+| Backend API | `http://localhost:18000` |
+| API docs | `http://localhost:18000/docs` |
+| Documentation | `http://localhost:15174` |
 | PostgreSQL | `localhost:5433` |
 
 The backend container connects to PostgreSQL through the Compose service name and uses the same `DATABASE_URL` environment variable expected in production.

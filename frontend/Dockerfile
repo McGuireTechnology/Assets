@@ -7,7 +7,7 @@ RUN npm ci
 
 COPY . .
 
-ENV VITE_API_BASE_URL=http://localhost:8000
+ENV VITE_API_BASE_URL=http://localhost:18000
 
 EXPOSE 5173
 
