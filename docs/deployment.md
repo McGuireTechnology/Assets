@@ -9,6 +9,30 @@ Assets is planned as a three-surface deployment:
 | Backend API | DigitalOcean | FastAPI application runtime |
 | Database | DigitalOcean PostgreSQL | Persistent application data |
 
+## Local Docker
+
+The local Docker stack is defined in `compose.yaml` and runs the frontend, backend, docs, and PostgreSQL together.
+
+```sh
+mise run docker:up
+```
+
+| Service | URL |
+| --- | --- |
+| Frontend | `http://localhost:5173` |
+| Backend API | `http://localhost:8000` |
+| API docs | `http://localhost:8000/docs` |
+| Documentation | `http://localhost:5174` |
+| PostgreSQL | `localhost:5433` |
+
+The backend container connects to PostgreSQL through the Compose service name and uses the same `DATABASE_URL` environment variable expected in production.
+
+Stop the stack with:
+
+```sh
+mise run docker:down
+```
+
 ## Documentation
 
 The docs site lives in `docs/` and is deployed to GitHub Pages from `main`.

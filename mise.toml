@@ -50,6 +50,22 @@ run = ".cache/python/venv/bin/python -m ruff check backend"
 description = "Build the backend Docker image"
 run = "docker build -f backend/Dockerfile -t assets-api:local backend"
 
+[tasks."docker:build"]
+description = "Build the local Docker stack"
+run = "docker compose build"
+
+[tasks."docker:up"]
+description = "Run the local Docker stack"
+run = "docker compose up --build"
+
+[tasks."docker:down"]
+description = "Stop the local Docker stack"
+run = "docker compose down"
+
+[tasks."docker:logs"]
+description = "Follow local Docker stack logs"
+run = "docker compose logs -f"
+
 [tasks.build]
 description = "Build frontend and docs"
 run = [
