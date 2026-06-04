@@ -1,0 +1,62 @@
+min_version = "2025.1.0"
+
+[tools]
+node = "24"
+python = "3.13"
+
+[env]
+PYTHONPATH = "{{ config_root }}/backend"
+npm_config_cache = "{{ config_root }}/.cache/npm"
+
+[tasks.bootstrap]
+description = "Install Python, frontend, and docs dependencies"
+run = [
+  "python -m venv .cache/python/venv",
+  ".cache/python/venv/bin/python -m pip install --upgrade pip",
+  ".cache/python/venv/bin/python -m pip install -r backend/requirements.txt -r backend/requirements-dev.txt",
+  "npm --prefix frontend ci",
+  "npm --prefix docs ci",
+]
+
+[tasks."frontend:dev"]
+description = "Run the Vue frontend dev server"
+run = "npm --prefix frontend run dev"
+
+[tasks."frontend:build"]
+description = "Build the Vue frontend"
+run = "npm --prefix frontend run build"
+
+[tasks."docs:dev"]
+description = "Run the VitePress docs dev server"
+run = "npm --prefix docs run dev"
+
+[tasks."docs:build"]
+description = "Build the VitePress docs site"
+run = "npm --prefix docs run build"
+
+[tasks."backend:dev"]
+description = "Run the FastAPI backend dev server"
+run = ".cache/python/venv/bin/python -m uvicorn app.main:app --app-dir backend --reload"
+
+[tasks."backend:test"]
+description = "Run backend tests"
+run = ".cache/python/venv/bin/python -m pytest"
+
+[tasks."backend:lint"]
+description = "Run backend lint checks"
+run = ".cache/python/venv/bin/python -m ruff check backend"
+
+[tasks.build]
+description = "Build frontend and docs"
+run = [
+  "npm --prefix frontend run build",
+  "npm --prefix docs run build",
+]
+
+[tasks.test]
+description = "Run backend tests"
+run = "mise run backend:test"
+
+[tasks.lint]
+description = "Run lint checks"
+run = "mise run backend:lint"
