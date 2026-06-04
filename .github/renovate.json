@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Renovate manages mise.toml tool versions; Dependabot manages npm, pip, and GitHub Actions.",
+  "enabledManagers": ["mise"],
+  "dependencyDashboard": true,
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "schedule": ["before 9am on monday"],
+  "timezone": "America/Chicago",
+  "packageRules": [
+    {
+      "description": "Group Mise toolchain updates",
+      "matchManagers": ["mise"],
+      "groupName": "mise toolchain",
+      "commitMessageTopic": "mise toolchain"
+    }
+  ]
+}

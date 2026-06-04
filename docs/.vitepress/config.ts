@@ -33,7 +33,10 @@ export default defineConfig({
         text: 'Releases',
         items: [
           { text: 'Changelog', link: '/changelog/' },
-          { text: '26.6.0', link: '/changelog/26.6.0' },
+          { text: '26.6.3', link: '/changelog/26.6.3' },
+          { text: '26.6.2', link: '/changelog/26.6.2' },
+          { text: '26.6.1', link: '/changelog/26.6.1' },
+          { text: '26.6.0', link: '/changelog/0.1.0' },
         ],
       },
     ],

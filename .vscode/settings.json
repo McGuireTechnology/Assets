@@ -1,0 +1,29 @@
+{
+  "terminal.integrated.defaultProfile.osx": "Assets",
+  "terminal.integrated.profiles.osx": {
+    "Assets": {
+      "path": "${workspaceFolder}/scripts/shell.sh"
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "Assets",
+  "terminal.integrated.profiles.linux": {
+    "Assets": {
+      "path": "${workspaceFolder}/scripts/shell.sh"
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "Assets",
+  "terminal.integrated.profiles.windows": {
+    "Assets": {
+      "path": "pwsh",
+      "args": [
+        "-NoLogo",
+        "-NoExit",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        ". '${workspaceFolder}\\scripts\\activate.ps1'"
+      ]
+    }
+  },
+  "python.terminal.activateEnvironment": false
+}
